@@ -20,6 +20,7 @@
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ygZ-y2-PZU">
                         <rect key="frame" x="0.0" y="0.0" width="84" height="84"/>
+                        <color key="backgroundColor" name="main-yellow"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="84" id="k2e-qt-AsF"/>
                         </constraints>
@@ -84,6 +85,9 @@
         </namedColor>
         <namedColor name="main-wh">
             <color red="0.99607843137254903" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="main-yellow">
+            <color red="0.99215686274509807" green="0.89411764705882357" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

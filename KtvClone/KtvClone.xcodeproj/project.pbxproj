@@ -35,6 +35,11 @@
 		5BD00F602B074D9C006D449E /* HomeRecommendContainerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BD00F5E2B074D9C006D449E /* HomeRecommendContainerCell.xib */; };
 		5BD00F632B0754B3006D449E /* HomeRecommendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD00F612B0754B3006D449E /* HomeRecommendCell.swift */; };
 		5BD00F642B0754B3006D449E /* HomeRecommendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BD00F622B0754B3006D449E /* HomeRecommendCell.xib */; };
+		5BF49CD82B0D923D007FE214 /* favorite.json in Resources */ = {isa = PBXBuildFile; fileRef = 5BF49CD32B0D923D007FE214 /* favorite.json */; };
+		5BF49CD92B0D923D007FE214 /* bookmark.json in Resources */ = {isa = PBXBuildFile; fileRef = 5BF49CD42B0D923D007FE214 /* bookmark.json */; };
+		5BF49CDA2B0D923D007FE214 /* home.json in Resources */ = {isa = PBXBuildFile; fileRef = 5BF49CD52B0D923D007FE214 /* home.json */; };
+		5BF49CDB2B0D923D007FE214 /* live.json in Resources */ = {isa = PBXBuildFile; fileRef = 5BF49CD62B0D923D007FE214 /* live.json */; };
+		5BF49CDC2B0D923D007FE214 /* video.json in Resources */ = {isa = PBXBuildFile; fileRef = 5BF49CD72B0D923D007FE214 /* video.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +73,11 @@
 		5BD00F5E2B074D9C006D449E /* HomeRecommendContainerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeRecommendContainerCell.xib; sourceTree = "<group>"; };
 		5BD00F612B0754B3006D449E /* HomeRecommendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRecommendCell.swift; sourceTree = "<group>"; };
 		5BD00F622B0754B3006D449E /* HomeRecommendCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeRecommendCell.xib; sourceTree = "<group>"; };
+		5BF49CD32B0D923D007FE214 /* favorite.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = favorite.json; sourceTree = "<group>"; };
+		5BF49CD42B0D923D007FE214 /* bookmark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bookmark.json; sourceTree = "<group>"; };
+		5BF49CD52B0D923D007FE214 /* home.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = home.json; sourceTree = "<group>"; };
+		5BF49CD62B0D923D007FE214 /* live.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = live.json; sourceTree = "<group>"; };
+		5BF49CD72B0D923D007FE214 /* video.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = video.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +145,7 @@
 		5BBADC562AFBAC1900D7E61E /* KtvClone */ = {
 			isa = PBXGroup;
 			children = (
+				5BF49CD22B0D9229007FE214 /* JSON */,
 				5B1BD75C2B05BACC00AF638C /* Home */,
 				5BBADC572AFBAC1900D7E61E /* AppDelegate.swift */,
 				5BBADC592AFBAC1900D7E61E /* SceneDelegate.swift */,
@@ -147,6 +158,18 @@
 				5BD00F552B073E6D006D449E /* TabBarController.swift */,
 			);
 			path = KtvClone;
+			sourceTree = "<group>";
+		};
+		5BF49CD22B0D9229007FE214 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				5BF49CD42B0D923D007FE214 /* bookmark.json */,
+				5BF49CD32B0D923D007FE214 /* favorite.json */,
+				5BF49CD52B0D923D007FE214 /* home.json */,
+				5BF49CD62B0D923D007FE214 /* live.json */,
+				5BF49CD72B0D923D007FE214 /* video.json */,
+			);
+			path = JSON;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,9 +236,14 @@
 				5B0364882B0B57B000166558 /* HomeFooterCell.xib in Resources */,
 				5B7F79352B0C8CB100AB03AF /* HomeRankingItemCell.xib in Resources */,
 				5BBADC6C2AFBD07A00D7E61E /* Colors.xcassets in Resources */,
+				5BF49CDB2B0D923D007FE214 /* live.json in Resources */,
 				5B7F79392B0C945600AB03AF /* HomeRecentWatchContainerCell.xib in Resources */,
 				5BBADC612AFBAC1B00D7E61E /* Assets.xcassets in Resources */,
 				5B1BD7632B05BC6400AF638C /* HomeVideoCell.xib in Resources */,
+				5BF49CD82B0D923D007FE214 /* favorite.json in Resources */,
+				5BF49CDA2B0D923D007FE214 /* home.json in Resources */,
+				5BF49CD92B0D923D007FE214 /* bookmark.json in Resources */,
+				5BF49CDC2B0D923D007FE214 /* video.json in Resources */,
 				5B7F793D2B0C971A00AB03AF /* HomeRecentWatchItemCell.xib in Resources */,
 				5BBADC5F2AFBAC1900D7E61E /* Main.storyboard in Resources */,
 				5BD00F5A2B074B67006D449E /* HomeHeaderCell.xib in Resources */,

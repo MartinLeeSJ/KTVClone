@@ -20,6 +20,8 @@ class HomeRecentWatchItemCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.thumbnailView.layer.cornerRadius = 42
+        self.thumbnailView.layer.borderWidth = 2
+        self.thumbnailView.layer.borderColor = UIColor(named: "stroke-light")?.cgColor
     }
     
     override func prepareForReuse() {
