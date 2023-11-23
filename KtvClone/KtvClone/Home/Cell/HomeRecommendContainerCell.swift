@@ -23,9 +23,11 @@ class HomeRecommendContainerCell: UITableViewCell {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var expandButton: UIButton!
+    @IBOutlet weak var foldButton: UIButton!
     
     public weak var delegate: HomeRecommendContainerCellDelegate?
+    private var viewModel: HomeRecommendViewModel?
+    private var recommends: [Home.Recommend]?
     
     @IBAction func didTapExpandButton(_ sender: Any) {
     }
@@ -48,10 +50,29 @@ class HomeRecommendContainerCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
+    func setData(_ data: [Home.Recommend]) {
+        // TODO: -
+        self.recommends = Array(data.prefix(upTo: 5))
+        self.tableView.reloadData()
+    }
+    
+    func setViewModel(_ viewModel: HomeRecommendViewModel) {
+        self.viewModel = viewModel
+        self.tableView.reloadData()
+        viewModel.foldChanged = { [weak self] isFolded in
+            self?.tableView.reloadData()
+        }
+    }
+    
+    func setButtonImage(_ isFolded: Bool) {
+        let imageName: String = isFolded ? "unfold" : "fold"
+        self.foldButton.setImage(
+            UIImage(named: imageName),
+            for: .normal
+        )
+    }
 }
 
 
@@ -61,8 +82,21 @@ extension HomeRecommendContainerCell: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCell(withIdentifier: HomeRecommendCell.identifier) as? HomeRecommendCell ?? UITableViewCell()
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: HomeRecommendCell.identifier,
+            for: indexPath
+        )
+        
+        if let cell = cell as? HomeRecommendCell,
+           let data = self.recommends?[indexPath.row] {
+            cell.setData(data, rank: indexPath.row + 1)
+        }
+        
+        return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.delegate?.homeRecommendContainerCell(self, didSelectAt: indexPath.row)
+    }
     
 }

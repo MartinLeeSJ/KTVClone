@@ -10,6 +10,7 @@ import UIKit
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    private let homeViewModel: HomeViewModel = .init()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .lightContent
@@ -17,7 +18,19 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.bindViewModel()
+        
+        homeViewModel.requestData()
+        
         setUpTableView()
+    }
+    
+    private func bindViewModel() {
+        homeViewModel.dataChanged = { [weak self] in
+            self?.tableView.reloadData()
+            self?.tableView.isHidden = false
+        }
     }
 
     private func setUpTableView() {
@@ -53,6 +66,8 @@ class HomeViewController: UIViewController {
             UINib(nibName: "HomeFooterCell", bundle: .main),
             forCellReuseIdentifier: HomeFooterCell.identifier
         )
+        
+        tableView.isHidden = true
     }
 
 }
@@ -72,7 +87,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         case .header:
             return 1
         case .video:
-            return 2
+            return self.homeViewModel.home?.videos.count ?? 0
         case .ranking:
             return 1
         case .recent:
@@ -96,40 +111,58 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                 withIdentifier: HomeHeaderCell.identifier
             ) as? HomeHeaderCell ?? UITableViewCell()
         case .video:
-            guard let cell = tableView.dequeueReusableCell(
-                withIdentifier: HomeVideoCell.identifier
-            ) as? HomeVideoCell else {
-                fatalError("Unsupported")
+             let cell = tableView.dequeueReusableCell(
+                withIdentifier: HomeVideoCell.identifier,
+                for: indexPath
+            )
+            if let cell = cell as? HomeVideoCell,
+               let data = homeViewModel.home?.videos[indexPath.row] {
+                cell.setData(data)
             }
+    
             
             return cell
             
         case .ranking:
-            guard let cell = tableView.dequeueReusableCell(
-                withIdentifier: HomeRankingContainerCell.identifier
-            ) as? HomeRankingContainerCell else {
-                fatalError("Unsupported")
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: HomeRankingContainerCell.identifier,
+                for: indexPath
+            )
+            
+            if let cell = cell as? HomeRankingContainerCell,
+               let data = homeViewModel.home?.rankings {
+                cell.setData(data)
+                cell.delegate = self
             }
-            cell.delegate = self
+            
             return cell
             
         case .recent:
-            guard let cell = tableView.dequeueReusableCell(
-                withIdentifier: HomeRecentWatchContainerCell.identifier
-            ) as? HomeRecentWatchContainerCell else {
-                fatalError("Unsupported")
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: HomeRecentWatchContainerCell.identifier,
+                for: indexPath
+            )
+            
+            if let cell = cell as? HomeRecentWatchContainerCell,
+               let data = homeViewModel.home?.recents {
+                cell.setData(data)
+                cell.delegate = self
             }
-            cell.delegate = self
+            
             return cell
             
         case .recommend:
-            guard let cell = tableView.dequeueReusableCell(
-                withIdentifier: HomeRecommendContainerCell.identifier
-            ) as? HomeRecommendContainerCell else {
-                fatalError("Unsupported")
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: HomeRecommendContainerCell.identifier,
+                for: indexPath
+            )
+            
+            if let cell = cell as? HomeRecommendContainerCell,
+               let data = homeViewModel.home?.recommends {
+                cell.setData(data)
+                cell.delegate = self
             }
             
-            cell.delegate = self
             
             return cell
             

@@ -158,9 +158,9 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="authorSubtitleLabel" destination="gi0-vw-Wwp" id="r8X-QQ-eFh"/>
-                <outlet property="authorThumbnailImageView" destination="hs1-di-Onq" id="2F3-S2-m86"/>
-                <outlet property="authorTitleLabel" destination="9Bv-8e-d6i" id="227-2V-moU"/>
+                <outlet property="channelSubtitleLabel" destination="gi0-vw-Wwp" id="r8X-QQ-eFh"/>
+                <outlet property="channelThumbnailImageView" destination="hs1-di-Onq" id="2F3-S2-m86"/>
+                <outlet property="channelTitleLabel" destination="9Bv-8e-d6i" id="227-2V-moU"/>
                 <outlet property="containerView" destination="VzA-og-cF5" id="tod-Zt-opO"/>
                 <outlet property="contentPopularityBadge" destination="OQD-CB-7qA" id="UwH-eL-hNK"/>
                 <outlet property="contentSubtitleLabel" destination="gce-2H-pOG" id="3De-yG-MeI"/>

@@ -18,6 +18,7 @@ final class HomeRankingContainerCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     public weak var delegate: HomeRankingContainerCellDelegate?
+    private var rankings: [Home.Ranking]?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,23 +40,28 @@ final class HomeRankingContainerCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    public func setData(_ data: [Home.Ranking]) {
+        self.rankings = data
+        self.collectionView.reloadData()
+    }
+    
 }
 
 extension HomeRankingContainerCell: UICollectionViewDelegate ,UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        rankings?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        guard let cell = collectionView.dequeueReusableCell(
+        let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: HomeRankingItemCell.identifier,
             for: indexPath
-        ) as? HomeRankingItemCell else {
-            fatalError("Unsupported")
-        }
+        )
         
-        cell.setRank(indexPath.row + 1)
+        if let cell = cell as? HomeRankingItemCell,
+           let data = rankings?[indexPath.item] {
+            cell.setData(data, rank: indexPath.item + 1)
+        }
         
         return cell
     }

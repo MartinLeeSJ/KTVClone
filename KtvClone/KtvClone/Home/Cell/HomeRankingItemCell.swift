@@ -12,6 +12,7 @@ class HomeRankingItemCell: UICollectionViewCell {
 
     @IBOutlet weak var rankingLabel: UILabel!
     @IBOutlet weak var thumbnailView: UIImageView!
+    private var imageTask: Task<Void, Never>?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,12 +21,17 @@ class HomeRankingItemCell: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
+        super.prepareForReuse()
+        
         rankingLabel.text = nil
         thumbnailView.image = nil
+        imageTask?.cancel()
+        imageTask = nil
     }
     
-    public func setRank(_ rank: Int) {
+    public func setData(_ data: Home.Ranking, rank: Int) {
         rankingLabel.text = "\(rank)"
+        imageTask = thumbnailView.loadImage(url: data.imageUrl)
     }
 
 }

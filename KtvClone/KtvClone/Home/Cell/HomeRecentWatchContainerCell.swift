@@ -18,7 +18,7 @@ final class HomeRecentWatchContainerCell: UITableViewCell {
     
     @IBOutlet weak var collectionView: UICollectionView!
     public weak var delegate: HomeRecentWatchContainerCellDelegate?
-    
+    private var recents: [Home.Recent]?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -42,19 +42,28 @@ final class HomeRecentWatchContainerCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    public func setData(_ data: [Home.Recent]) {
+        recents = data
+        self.collectionView.reloadData()
+    }
+    
 }
 
 extension HomeRecentWatchContainerCell: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        recents?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(
+       let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: HomeRecentWatchItemCell.identifier,
             for: indexPath
-        ) as? HomeRecentWatchItemCell else {
-            fatalError("Unsupported")
+        ) 
+        
+        
+        if let cell = cell as? HomeRecentWatchItemCell,
+           let data = self.recents?[indexPath.item] {
+            cell.setData(data)
         }
         
         return cell
